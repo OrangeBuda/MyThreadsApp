@@ -1,5 +1,7 @@
 package pe.test.mythreadsapp;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,10 +12,18 @@ import android.view.View;
 
 public class MainActivity extends ActionBarActivity {
 
+    private AlertDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle(R.string.progress_title);
+        progressDialog.setMessage(getString(R.string.progress_message));
+        progressDialog.setCancelable(false);
+
         findViewById(R.id.activity_main_Button_main_thread).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
