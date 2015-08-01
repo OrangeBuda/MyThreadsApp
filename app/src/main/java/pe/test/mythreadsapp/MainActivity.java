@@ -47,22 +47,29 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void longTask() {
+
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 
     private void executeOnMainThread() {
+        progressDialog.show();
         longTask();
+        progressDialog.dismiss();
     }
 
     private void executeOnWorkerThread() {
+        //se ejecuta la señal de activacion en el hilo proncipal pero debe de ocultarse el progreess en el hilo aparte
+        progressDialog.show();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 longTask();
+                progressDialog.dismiss();
             }
         }).start();
     }
@@ -76,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected void onPreExecute() {
-                super.onPreExecute();
+                progressDialog.show();
             }
 
             @Override
@@ -88,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+                progressDialog.dismiss();
             }
 
         }.execute();
