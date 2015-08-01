@@ -21,14 +21,14 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        findViewById(R.id.activity_main_Button_main_thread).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.activity_main_Button_Worker_thread).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 executeOnWorkerThread();
             }
         });
 
-        findViewById(R.id.activity_main_Button_main_thread).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.activity_main_Button_async_Task).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 executeAsyncTask();
